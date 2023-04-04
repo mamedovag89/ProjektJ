@@ -58,5 +58,59 @@ public void addChild(Human child){
         System.out.printf("Родители не могут быть моложе %s лет \n", Parentmin);
 
     }
+
 }
+public String getInfo(){
+    StringBuilder sb = new StringBuilder();
+    sb.append("имя: ");
+    sb.append(fullName);
+    sb.append(", ");
+    sb.append(getMother());
+    sb.append(", ");
+    sb.append(getFather());
+    sb.append(", ");
+    sb.append(getChildren());
+    return sb.toString();
 }
+
+public String getMotherInfo(){
+    String res = "мать: ";
+    if (mother != null){
+        res += mother.getFullName();
+
+    } else {
+        res += "Неизвестна";
+
+    }
+    return res;
+}
+public String getFatherInfo(){
+    String res = "отец: ";
+    if (father != null){
+        res += father.getFullName();
+    } else {
+        res += "Неизвестен";
+    }
+    return res;
+}
+public String getChildrenInfo() {
+    StringBuilder res = new StringBuilder();
+    res.append("дети: ");
+    if (children.size() != 0) {
+        res.append(children.get(0).getFullName());
+        for(int i = 1; i < children.size(); i++) {
+            res.append(", ");
+            res.append(children.get(i).getFullName());
+        }
+    }else {
+        res.append("Отсутствуют");
+
+    }
+    return res.toString();
+
+
+    }
+    
+}
+    
+
