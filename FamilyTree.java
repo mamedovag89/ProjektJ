@@ -37,6 +37,19 @@ public class FamilyTree {
                 System.out.printf("%s (%d) имеет следующих детей:\n %s\n", humanTemp.getFullName(), humanTemp.getBirthYear(), humanTemp.getChildren());
             }
         }
+    
     }
+    public String getInfo(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(" В дереве ");
+        sb.append(familyTree.size());
+        sb.append("Объектов: \n");
+        for (Human human: familyTree) {
+            sb.append(human.getInfo());
+            sb.append(("\n"));
+
+        }
+        return sb.toString();
+    } 
 }
 
