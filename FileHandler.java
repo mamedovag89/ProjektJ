@@ -6,15 +6,32 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public class FileHandler implements Serializable {
+public class FileHandler implements Writable {
+        private String fileName;
+        private String fileType;
+    
+        public FileHandler(String fileName, String fileType){
+            this.fileName = fileName;
+            this.fileType = fileType;
+        }
+    
+        public String getFileName() {
+            return fileName;
+        }
+    
+        public String getFileType() {
+            return fileType;
+        }
+
+    @Override
     public void writeFile(String fileName, String fileType , FamilyTree list) throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(
             new FileOutputStream(fileName + "." + fileType));
         out.writeObject(list);
         out.close();
     }
-
-    public FamilyTree readFile(String fileName, String fileType ) throws IOException, ClassNotFoundException {
+    @Override
+    public FamilyTree readFile() throws IOException, ClassNotFoundException {
         ObjectInputStream inputStream = new ObjectInputStream (
             new FileInputStream(fileName + "." + fileType));
              FamilyTree myTree = (FamilyTree) inputStream.readObject();
