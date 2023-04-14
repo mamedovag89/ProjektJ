@@ -1,7 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human {
+public class Human  implements Serializable, Comparable<Human>{
+    private int id;
     private Human gender;
     private Human father;
     private Human mother;
@@ -9,15 +11,31 @@ public class Human {
     private String fullName;
     private int birthYear;
 
-    public Human(Human gender, Human father, Human mother, String fullName, int birthYear) {
+    public Human(int id, Human gender, Human father, Human mother, String fullName, int birthYear) {
+        this.id = id;
         this.gender = gender;
-        this.father = father;
-        this.mother = mother;
+        this.father = null;
+        this.mother = null;
         this.children = new ArrayList<Human>();
         this.fullName = fullName;
         this.birthYear = birthYear;
 
         
+    }
+    public Human(String fullName, Gender gender, Human father, Human mother, int birthYear) {
+        this.fullName = fullName;
+        this.gender = gender;
+        this.father = father;
+        this.mother = mother;
+        this.birthYear = birthYear;
+        this.children = new ArrayList<>();
+    }
+
+    public Gender getGender(String g) {
+        if (g.equals("м")){
+            return Gender.male;
+        }
+        return Gender.female;
     }
 
     @Override
